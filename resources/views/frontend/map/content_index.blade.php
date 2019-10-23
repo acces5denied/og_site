@@ -1,0 +1,1 @@
+<div id="allPlacemarks" class="loading" style="height: 700px; margin-bottom: 20px;"></div>

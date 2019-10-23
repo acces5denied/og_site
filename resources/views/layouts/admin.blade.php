@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    
+     <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    
+    <style>
+        #loader {
+            transition: all .3s ease-in-out;
+            opacity: 1;
+            visibility: visible;
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            background: #fff;
+            z-index: 90000
+        }
+
+        #loader.fadeOut {
+            opacity: 0;
+            visibility: hidden
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: calc(50% - 20px);
+            left: calc(50% - 20px);
+            background-color: #333;
+            border-radius: 100%;
+            -webkit-animation: sk-scaleout 1s infinite ease-in-out;
+            animation: sk-scaleout 1s infinite ease-in-out
+        }
+
+        @-webkit-keyframes sk-scaleout {
+            0% {
+                -webkit-transform: scale(0)
+            }
+            100% {
+                -webkit-transform: scale(1);
+                opacity: 0
+            }
+        }
+
+        @keyframes sk-scaleout {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0)
+            }
+            100% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                opacity: 0
+            }
+        }
+
+    </style>
+    <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/jquery.fileuploader.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/jquery.fileuploader-theme-thumbnails.css') }}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="app" >
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+    <script>
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('fadeOut');
+            }, 300);
+        });
+
+    </script>
+    <div>
+       
+        @yield('sidebar')
+        
+        @yield('content')
+        
+    </div>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=2696481e-83d8-4900-9101-5958109984ba&lang=ru_RU" type="text/javascript">
+    </script>
+    <script type="text/javascript" src="{{ asset('/admin/js/vendor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/admin/js/bundle.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/js/jquery.fileuploader.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/js/ckeditor5/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/js/ckeditor5/lang/ru.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/js/main.js') }}"></script>
+</body>
+
+</html>
